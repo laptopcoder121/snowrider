@@ -5,14 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Snow Rider 3D Clone</title>
   <style>
-    body { font-family: Arial, sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-    #gameCanvas { background: #a0d8ef; border: 2px solid #333; }
-    #score { position: absolute; top: 10px; left: 10px; font-size: 24px; color: white; }
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      position: relative;
+      background: #a0d8ef;
+      overflow: hidden;
+    }
+    #gameCanvas {
+      background: transparent;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    #score {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
+      color: white;
+      z-index: 2;
+    }
+    #fpsDisplay {
+      position: absolute;
+      top: 50px;
+      left: 10px;
+      font-size: 24px;
+      color: white;
+      z-index: 2;
+    }
+    #gameOver {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 36px;
+      color: red;
+      display: none;
+      z-index: 3;
+    }
+    #sledInfo {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      color: white;
+      z-index: 2;
+    }
   </style>
 </head>
 <body>
   <div id="score">Score: <span id="scoreValue">0</span></div>
+  <div id="fpsDisplay">FPS: <span id="fpsValue">0</span></div>
+  <div id="sledInfo">Current Sled: <span id="currentSled">Red Sled</span> | Presents Collected: <span id="presentsCollected">0</span></div>
   <canvas id="gameCanvas" width="800" height="600"></canvas>
+  <div id="gameOver">Game Over! <br>Your score: <span id="finalScore"></span><br><button id="restartBtn">Restart</button></div>
   <script src="game.js"></script>
 </body>
 </html>
