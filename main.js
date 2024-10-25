@@ -5,7 +5,7 @@ import { Present } from './present.js';
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 let score = 0, presentCount = 0, gameRunning = true;
-let sled = new Sled(ctx, 'assets/sled-red.png');
+let sled = new Sled(ctx);
 let obstacles = [];
 let presents = [];
 let lastFrameTime = 0, fps = 0;
@@ -35,9 +35,6 @@ function gameLoop(currentTime) {
 function incrementScore(points) {
   score += points;
   document.getElementById('scoreValue').innerText = score;
-  if (score >= 1000) unlockSled();
 }
-
-function unlockSled() { /* Functionality to change sled image */ }
 
 initGame();
