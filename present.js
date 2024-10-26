@@ -4,10 +4,7 @@ export class Present {
     this.canvas = canvas;
     this.x = Math.random() * (canvas.width - 30);
     this.y = -30;
-    this.width = 30;
-    this.height = 30;
-    this.image = new Image();
-    this.image.src = 'assets/present.png';
+    this.radius = 15;
   }
   updateAndCollect(sled, callback) {
     this.y += 3;
@@ -16,14 +13,17 @@ export class Present {
       callback(10);
       presents.splice(presents.indexOf(this), 1);
     }
-    this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    this.ctx.fillStyle = 'green';
+    this.ctx.beginPath();
+    this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    this.ctx.fill();
   }
   checkCollision(sled) {
     return (
-      sled.x < this.x + this.width &&
-      sled.x + sled.width > this.x &&
-      sled.y < this.y + this.height &&
-      sled.y + sled.height > this.y
+      sled.x < this.x + this.radius &&
+      sled.x + sled.width > this.x - this.radius &&
+      sled.y < this.y + this.radius &&
+      sled.y + sled.height > this.y - this.radius
     );
   }
 }
